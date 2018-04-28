@@ -1,4 +1,5 @@
 
+
 # C_BlockFIFO
 data FIFO use block. Simple but useful .
 
@@ -26,9 +27,11 @@ for(i=0;i<LineNum;i++)
 InitBlockFifo(&gBlkFifo,pp,LineNum,BlockSize);
   
 //you can use WriteBlockFifo(&gBlkFifo,(unsigned char*)"abc") in the [dma]interrupt code.
+
 //Carefully . "abc".length <= BlockSize 
   
 //you can use ReadBlockFifo(&gBlkFifo,rrrr) in the application code.
+
 //Carefully . rrrr.length >= BlockSize   
 
 //if application code is slowly and cache is full, Early data will be override.
