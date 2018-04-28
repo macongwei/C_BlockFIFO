@@ -35,33 +35,5 @@ unsigned char ReadBlockFifo(T_BlkFifo *pBlkFifo, unsigned char* pBlk)
 }
 
 
-void example_use_block_fifo()
-{
-	#define LineNum		2
-	#define BlockSize	 5
-	
-  int i = 0;
-	T_BlkFifo gBlkFifo;
-	unsigned char testArray[LineNum][BlockSize] = {0};
-	unsigned char *(pp[LineNum]);
-	for(i=0;i<LineNum;i++)
-	{
-		pp[i] = &testArray[i][0];
-	}
-
-	InitBlockFifo(&gBlkFifo,pp,LineNum,BlockSize);
-	
-	WriteBlockFifo(&gBlkFifo,(unsigned char*)"abc");
-	WriteBlockFifo(&gBlkFifo,(unsigned char*)"xyz");
-  //because LineNum is 2, so "mnp" will override "adb"
-	WriteBlockFifo(&gBlkFifo,(unsigned char*)"mnp");
-
-	unsigned char rrrr[10] = "";
-  ReadBlockFifo(&gBlkFifo,rrrr);//rrrr is xyz
-  ReadBlockFifo(&gBlkFifo,rrrr);//rrrr is mnp
-  ReadBlockFifo(&gBlkFifo,rrrr);//return 0
-  ReadBlockFifo(&gBlkFifo,rrrr);//return 0
-
-}
 
 
